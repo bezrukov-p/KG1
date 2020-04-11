@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1022
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KG1", "WindowsFormsApp2\KG1.csproj", "{89A6967C-9C23-4276-8D27-0C193E7F73A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KG1", "WinForm\KG1.csproj", "{89A6967C-9C23-4276-8D27-0C193E7F73A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filters", "Filters\Filters.csproj", "{359A19F9-0224-4BEF-95FE-0A589FC69209}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{89A6967C-9C23-4276-8D27-0C193E7F73A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89A6967C-9C23-4276-8D27-0C193E7F73A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89A6967C-9C23-4276-8D27-0C193E7F73A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{359A19F9-0224-4BEF-95FE-0A589FC69209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{359A19F9-0224-4BEF-95FE-0A589FC69209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{359A19F9-0224-4BEF-95FE-0A589FC69209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{359A19F9-0224-4BEF-95FE-0A589FC69209}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
