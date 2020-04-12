@@ -27,8 +27,12 @@ namespace WindowsFormsApp2
 
         OriginalWindow OrigWin { get; set; }
 
+        EditForm MorphEditForm { get; set; }
+
         Stack<Bitmap> before;
         Stack<Bitmap> after;
+
+        bool[,] MorphMask;
 
         public WinForm()
         {
@@ -41,6 +45,9 @@ namespace WindowsFormsApp2
 
             впередToolStripMenuItem.Enabled = false;
             назадToolStripMenuItem.Enabled = false;
+
+            bool[,] mask = { { true, true, true }, { true, true, true }, { true, true, true } };
+            MorphMask = mask;
         }
 
         #region MenuButtons
@@ -263,20 +270,20 @@ namespace WindowsFormsApp2
 
         private void расширениеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Filter filter = new DilationFilter();
+            Filter filter = new DilationFilter(MorphMask);
             backgroundWorker1.RunWorkerAsync(filter);
         }
 
         private void сужениеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Filter filter = new ErosionFilter();
+            Filter filter = new ErosionFilter(MorphMask);
             backgroundWorker1.RunWorkerAsync(filter);
         }
 
         private void открытеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Filter erosion = new DilationFilter();
-            Filter dilation = new ErosionFilter();
+            Filter erosion = new DilationFilter(MorphMask);
+            Filter dilation = new ErosionFilter(MorphMask);
 
             Filter[] arr = { erosion, dilation };
 
@@ -285,7 +292,7 @@ namespace WindowsFormsApp2
 
         private void закрытиеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Filter dilation = new DilationFilter();
+            Filter dilation = new DilationFilter(MorphMask);
             Filter erosion = new ErosionFilter();
 
             Filter[] arr = { dilation, erosion };
@@ -295,8 +302,40 @@ namespace WindowsFormsApp2
 
         private void градиентToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Filter filter = new GradFilter();
+            Filter filter = new GradFilter(MorphMask);
             backgroundWorker1.RunWorkerAsync(filter);
+        }
+
+        private void медианныйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Filter filter = new MedianFilter();
+            backgroundWorker1.RunWorkerAsync(filter);
+        }
+
+
+        private void настройкаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MorphEditForm != null)
+            {
+                MorphEditForm.Close();
+                MorphEditForm = null;
+            }
+            else
+            {
+                MorphEditForm = new EditForm();
+                MorphEditForm.FormClosed += (s, o) => {
+
+                    if(MorphEditForm.OK)
+                    {
+                        MorphMask = MorphEditForm.Mask;
+                    }
+
+                    MorphEditForm = null;
+                };
+                
+                MorphEditForm.Render(3, MorphMask);
+                MorphEditForm.Show();
+            }
         }
 
         #endregion
@@ -435,8 +474,9 @@ namespace WindowsFormsApp2
 
 
 
+
+
         #endregion
 
-        
     }
 }

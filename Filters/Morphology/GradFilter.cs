@@ -16,6 +16,12 @@ namespace Filters.Morphology
             mask = a;
         }
 
+        public GradFilter(bool[,] _m)
+        {
+            mask = _m;
+        }
+        
+
         protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
         {
             //На самом деле не надо

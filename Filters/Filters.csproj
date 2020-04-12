@@ -53,6 +53,7 @@
     <Compile Include="Morphology\DilationFilter.cs" />
     <Compile Include="Morphology\ErosionFilter.cs" />
     <Compile Include="Morphology\GradFilter.cs" />
+    <Compile Include="MatrixFilter\MedianFilter.cs" />
     <Compile Include="Morphology\MorphologyFilter.cs" />
     <Compile Include="PointFilter\BrightnessIncreaseFilter.cs" />
     <Compile Include="PointFilter\GrayScaleFilter.cs" />
